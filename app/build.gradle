@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 //apply plugin: 'com.github.dcendents.android-maven' // maven repository e eklememiz için gerekli gradle plugin
 //apply plugin: "com.jfrog.bintray" // bintray yapılandırması yapmamız için gerekli gradle plugin
 // Kodların devamında göreceğiniz hazır yazılmış gradle tasklerini getiren yapıda, güncellenmesi gereken yerleri
@@ -32,12 +33,13 @@ apply plugin: 'com.android.library'
 
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.0"
+    namespace 'com.emredavarci.circleprogressbar'
+    compileSdkVersion 34
+    buildToolsVersion "34.0.0"
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 29
+        targetSdkVersion 34
         versionCode 3
         versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -48,7 +50,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
 }
 
 dependencies {
