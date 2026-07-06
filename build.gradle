@@ -1,8 +1,4 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
-apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
-
 buildscript {
     repositories {
         google()
@@ -58,7 +54,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.dotmanki'
                 artifactId = 'CircleProgressbar-JitPackFix'
-                version = '1.0.1'
+                version = '1.0.2'
             }
         }
     }
