@@ -1,40 +1,26 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-//apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
-//publish {
-//    userOrg = "emredavarci"
-//    groupId = "com.emredavarci"
-//    artifactId = "circleprogressbar"
-//    publishVersion = "1.0.6"
-//    desc = "An easy to use circular progressbar for Android"
-//    website = "https://github.com/emre1512/CircleProgressBar"
-//}
 buildscript {
     repositories {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
-        maven { url "https://repo.grails.org/grails/core/" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.5.2'
     }
-
 }
-
 
 allprojects {
     repositories {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
-        maven { url "https://repo.grails.org/grails/core/" }
     }
 }
-
-
 
 android {
     namespace 'com.emredavarci.circleprogressbar'
@@ -57,5 +43,23 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+    
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+        }
+    }
 }
 
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.dotmanki'
+                artifactId = 'CircleProgressbar-JitPackFix'
+                version = '1.0.1'
+            }
+        }
+    }
+}
